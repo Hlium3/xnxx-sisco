@@ -1,0 +1,13 @@
+com\csxnxx\generator\config\GenConfig.class
+com\csxnxx\generator\service\IGenTableService.class
+com\csxnxx\generator\mapper\GenTableColumnMapper.class
+com\csxnxx\generator\util\VelocityInitializer.class
+com\csxnxx\generator\domain\GenTableColumn.class
+com\csxnxx\generator\util\GenUtils.class
+com\csxnxx\generator\mapper\GenTableMapper.class
+com\csxnxx\generator\util\VelocityUtils.class
+com\csxnxx\generator\service\GenTableServiceImpl.class
+com\csxnxx\generator\service\IGenTableColumnService.class
+com\csxnxx\generator\controller\GenController.class
+com\csxnxx\generator\domain\GenTable.class
+com\csxnxx\generator\service\GenTableColumnServiceImpl.class

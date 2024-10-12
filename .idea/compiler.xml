@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="ruoyi-system" />
+        <module name="xnxx-admin" />
+        <module name="ruoyi-generator" />
+        <module name="xnxx-sisco" />
+        <module name="ruoyi-framework" />
+        <module name="xnxx-framework" />
+        <module name="ruoyi-common" />
+        <module name="xnxx-common" />
+        <module name="ruoyi-quartz" />
+        <module name="xnxx-generator" />
+        <module name="xnxx-quartz" />
+        <module name="xnxx-system" />
+        <module name="ruoyi-admin" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>

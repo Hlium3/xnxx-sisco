@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csxnxx.system.mapper.PracticeUserMapper">
+
+    <resultMap type="PracticeUser" id="PracticeUserResult">
+        <result property="userId" column="user_id"/>
+        <result property="name" column="name"/>
+        <result property="gender" column="gender"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <sql id="selectPracticeUserVo">
+        select user_id, name, gender, create_time, update_time
+        from practice_user
+    </sql>
+
+    <select id="selectPracticeUserList" parameterType="PracticeUser" resultMap="PracticeUserResult">
+        <include refid="selectPracticeUserVo"/>
+        <where>
+            <if test="name != null  and name != ''">and name like concat('%', #{name}, '%')</if>
+            <if test="gender != null  and gender != ''">and gender = #{gender}</if>
+        </where>
+    </select>
+
+    <select id="selectPracticeUserByUserId" parameterType="Long" resultMap="PracticeUserResult">
+        <include refid="selectPracticeUserVo"/>
+        where user_id = #{userId}
+    </select>
+
+    <insert id="insertPracticeUser" parameterType="PracticeUser" useGeneratedKeys="true" keyProperty="userId">
+        insert into practice_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">name,</if>
+            <if test="gender != null">gender,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">#{name},</if>
+            <if test="gender != null">#{gender},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+        </trim>
+    </insert>
+
+    <update id="updatePracticeUser" parameterType="PracticeUser">
+        update practice_user
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null">name = #{name},</if>
+            <if test="gender != null">gender = #{gender},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where user_id = #{userId}
+    </update>
+
+    <delete id="deletePracticeUserByUserId" parameterType="Long">
+        delete
+        from practice_user
+        where user_id = #{userId}
+    </delete>
+
+    <delete id="deletePracticeUserByUserIds" parameterType="String">
+        delete from practice_user where user_id in
+        <foreach item="userId" collection="array" open="(" separator="," close=")">
+            #{userId}
+        </foreach>
+    </delete>
+</mapper>

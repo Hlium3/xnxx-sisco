@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csxnxx.sisco.mapper.SProjectStageCopyMapper">
+
+    <resultMap type="SProjectStageCopy" id="SProjectStageCopyResult">
+        <result property="stageId"    column="stage_id"    />
+        <result property="projectId"    column="project_id"    />
+        <result property="parentTypeId"    column="parent_type_id"    />
+        <result property="typeId"    column="type_id"    />
+        <result property="planTaskTime"    column="plan_task_time"    />
+        <result property="actualTaskTime"    column="actual_task_time"    />
+        <result property="usedTaskTime"    column="used_task_time"    />
+        <result property="schedule"    column="schedule"    />
+        <result property="delay"    column="delay"    />
+        <result property="state"    column="state"    />
+        <result property="createDate"    column="create_date"    />
+        <result property="createUserCode"    column="create_user_code"    />
+        <result property="lastModifyDate"    column="last_modify_date"    />
+        <result property="lastModifyUserCode"    column="last_modify_user_code"    />
+        <result property="versionId"    column="version_id"    />
+        <result property="executionContext"    column="execution_context"    />
+        <result property="stageName"    column="stage_name"    />
+        <result property="beginDate"    column="begin_date"    />
+        <result property="endDate"    column="end_date"    />
+    </resultMap>
+
+    <sql id="selectSProjectStageCopyVo">
+        select stage_id, project_id, parent_type_id, type_id, plan_task_time, actual_task_time, used_task_time, schedule, delay, state, create_date, create_user_code, last_modify_date, last_modify_user_code, version_id, execution_context, stage_name, begin_date, end_date from s_project_stage_copy
+    </sql>
+
+    <select id="selectSProjectStageCopyList" parameterType="SProjectStageCopy" resultMap="SProjectStageCopyResult">
+        <include refid="selectSProjectStageCopyVo"/>
+        <where>
+            <if test="projectId != null  and projectId != ''"> and project_id = #{projectId}</if>
+            <if test="parentTypeId != null  and parentTypeId != ''"> and parent_type_id = #{parentTypeId}</if>
+            <if test="typeId != null  and typeId != ''"> and type_id = #{typeId}</if>
+            <if test="planTaskTime != null "> and plan_task_time = #{planTaskTime}</if>
+            <if test="actualTaskTime != null "> and actual_task_time = #{actualTaskTime}</if>
+            <if test="usedTaskTime != null "> and used_task_time = #{usedTaskTime}</if>
+            <if test="schedule != null "> and schedule = #{schedule}</if>
+            <if test="delay != null "> and delay = #{delay}</if>
+            <if test="state != null "> and state = #{state}</if>
+            <if test="createDate != null "> and create_date = #{createDate}</if>
+            <if test="createUserCode != null  and createUserCode != ''"> and create_user_code = #{createUserCode}</if>
+            <if test="lastModifyDate != null "> and last_modify_date = #{lastModifyDate}</if>
+            <if test="lastModifyUserCode != null  and lastModifyUserCode != ''"> and last_modify_user_code = #{lastModifyUserCode}</if>
+            <if test="versionId != null "> and version_id = #{versionId}</if>
+            <if test="executionContext != null  and executionContext != ''"> and execution_context = #{executionContext}</if>
+            <if test="stageName != null  and stageName != ''"> and stage_name like concat('%', #{stageName}, '%')</if>
+            <if test="beginDate != null "> and begin_date = #{beginDate}</if>
+            <if test="endDate != null "> and end_date = #{endDate}</if>
+        </where>
+    </select>
+
+    <select id="selectSProjectStageCopyByStageId" parameterType="String" resultMap="SProjectStageCopyResult">
+        <include refid="selectSProjectStageCopyVo"/>
+        where stage_id = #{stageId}
+    </select>
+
+    <insert id="insertSProjectStageCopy" parameterType="SProjectStageCopy">
+        insert into s_project_stage_copy
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="stageId != null">stage_id,</if>
+            <if test="projectId != null">project_id,</if>
+            <if test="parentTypeId != null">parent_type_id,</if>
+            <if test="typeId != null">type_id,</if>
+            <if test="planTaskTime != null">plan_task_time,</if>
+            <if test="actualTaskTime != null">actual_task_time,</if>
+            <if test="usedTaskTime != null">used_task_time,</if>
+            <if test="schedule != null">schedule,</if>
+            <if test="delay != null">delay,</if>
+            <if test="state != null">state,</if>
+            <if test="createDate != null">create_date,</if>
+            <if test="createUserCode != null">create_user_code,</if>
+            <if test="lastModifyDate != null">last_modify_date,</if>
+            <if test="lastModifyUserCode != null">last_modify_user_code,</if>
+            <if test="versionId != null">version_id,</if>
+            <if test="executionContext != null">execution_context,</if>
+            <if test="stageName != null">stage_name,</if>
+            <if test="beginDate != null">begin_date,</if>
+            <if test="endDate != null">end_date,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="stageId != null">#{stageId},</if>
+            <if test="projectId != null">#{projectId},</if>
+            <if test="parentTypeId != null">#{parentTypeId},</if>
+            <if test="typeId != null">#{typeId},</if>
+            <if test="planTaskTime != null">#{planTaskTime},</if>
+            <if test="actualTaskTime != null">#{actualTaskTime},</if>
+            <if test="usedTaskTime != null">#{usedTaskTime},</if>
+            <if test="schedule != null">#{schedule},</if>
+            <if test="delay != null">#{delay},</if>
+            <if test="state != null">#{state},</if>
+            <if test="createDate != null">#{createDate},</if>
+            <if test="createUserCode != null">#{createUserCode},</if>
+            <if test="lastModifyDate != null">#{lastModifyDate},</if>
+            <if test="lastModifyUserCode != null">#{lastModifyUserCode},</if>
+            <if test="versionId != null">#{versionId},</if>
+            <if test="executionContext != null">#{executionContext},</if>
+            <if test="stageName != null">#{stageName},</if>
+            <if test="beginDate != null">#{beginDate},</if>
+            <if test="endDate != null">#{endDate},</if>
+         </trim>
+    </insert>
+
+    <update id="updateSProjectStageCopy" parameterType="SProjectStageCopy">
+        update s_project_stage_copy
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="projectId != null">project_id = #{projectId},</if>
+            <if test="parentTypeId != null">parent_type_id = #{parentTypeId},</if>
+            <if test="typeId != null">type_id = #{typeId},</if>
+            <if test="planTaskTime != null">plan_task_time = #{planTaskTime},</if>
+            <if test="actualTaskTime != null">actual_task_time = #{actualTaskTime},</if>
+            <if test="usedTaskTime != null">used_task_time = #{usedTaskTime},</if>
+            <if test="schedule != null">schedule = #{schedule},</if>
+            <if test="delay != null">delay = #{delay},</if>
+            <if test="state != null">state = #{state},</if>
+            <if test="createDate != null">create_date = #{createDate},</if>
+            <if test="createUserCode != null">create_user_code = #{createUserCode},</if>
+            <if test="lastModifyDate != null">last_modify_date = #{lastModifyDate},</if>
+            <if test="lastModifyUserCode != null">last_modify_user_code = #{lastModifyUserCode},</if>
+            <if test="versionId != null">version_id = #{versionId},</if>
+            <if test="executionContext != null">execution_context = #{executionContext},</if>
+            <if test="stageName != null">stage_name = #{stageName},</if>
+            <if test="beginDate != null">begin_date = #{beginDate},</if>
+            <if test="endDate != null">end_date = #{endDate},</if>
+        </trim>
+        where stage_id = #{stageId}
+    </update>
+
+    <delete id="deleteSProjectStageCopyByStageId" parameterType="String">
+        delete from s_project_stage_copy where stage_id = #{stageId}
+    </delete>
+
+    <delete id="deleteSProjectStageCopyByStageIds" parameterType="String">
+        delete from s_project_stage_copy where stage_id in
+        <foreach item="stageId" collection="array" open="(" separator="," close=")">
+            #{stageId}
+        </foreach>
+    </delete>
+</mapper>

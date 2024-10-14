@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csxnxx.sisco.mapper.SMandayMapper">
+
+    <resultMap type="SManday" id="SMandayResult">
+        <result property="mandayId"    column="manday_id"    />
+        <result property="year"    column="year"    />
+        <result property="month"    column="month"    />
+        <result property="manday"    column="manday"    />
+        <result property="remark"    column="remark"    />
+        <result property="createDate"    column="create_date"    />
+        <result property="createUserCode"    column="create_user_code"    />
+        <result property="lastModifyDate"    column="last_modify_date"    />
+        <result property="lastModifyUserCode"    column="last_modify_user_code"    />
+        <result property="midWage"    column="mid_wage"    />
+        <result property="manageRatio"    column="manage_ratio"    />
+    </resultMap>
+
+    <sql id="selectSMandayVo">
+        select manday_id, year, month, manday, remark, create_date, create_user_code, last_modify_date, last_modify_user_code, mid_wage, manage_ratio from s_manday
+    </sql>
+
+    <select id="selectSMandayList" parameterType="SManday" resultMap="SMandayResult">
+        <include refid="selectSMandayVo"/>
+        <where>
+            <if test="year != null "> and year = #{year}</if>
+            <if test="month != null "> and month = #{month}</if>
+            <if test="manday != null "> and manday = #{manday}</if>
+            <if test="createDate != null "> and create_date = #{createDate}</if>
+            <if test="createUserCode != null  and createUserCode != ''"> and create_user_code = #{createUserCode}</if>
+            <if test="lastModifyDate != null "> and last_modify_date = #{lastModifyDate}</if>
+            <if test="lastModifyUserCode != null  and lastModifyUserCode != ''"> and last_modify_user_code = #{lastModifyUserCode}</if>
+            <if test="midWage != null "> and mid_wage = #{midWage}</if>
+            <if test="manageRatio != null "> and manage_ratio = #{manageRatio}</if>
+        </where>
+    </select>
+
+    <select id="selectSMandayByMandayId" parameterType="String" resultMap="SMandayResult">
+        <include refid="selectSMandayVo"/>
+        where manday_id = #{mandayId}
+    </select>
+
+    <insert id="insertSManday" parameterType="SManday">
+        insert into s_manday
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="mandayId != null">manday_id,</if>
+            <if test="year != null">year,</if>
+            <if test="month != null">month,</if>
+            <if test="manday != null">manday,</if>
+            <if test="remark != null">remark,</if>
+            <if test="createDate != null">create_date,</if>
+            <if test="createUserCode != null">create_user_code,</if>
+            <if test="lastModifyDate != null">last_modify_date,</if>
+            <if test="lastModifyUserCode != null">last_modify_user_code,</if>
+            <if test="midWage != null">mid_wage,</if>
+            <if test="manageRatio != null">manage_ratio,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="mandayId != null">#{mandayId},</if>
+            <if test="year != null">#{year},</if>
+            <if test="month != null">#{month},</if>
+            <if test="manday != null">#{manday},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="createDate != null">#{createDate},</if>
+            <if test="createUserCode != null">#{createUserCode},</if>
+            <if test="lastModifyDate != null">#{lastModifyDate},</if>
+            <if test="lastModifyUserCode != null">#{lastModifyUserCode},</if>
+            <if test="midWage != null">#{midWage},</if>
+            <if test="manageRatio != null">#{manageRatio},</if>
+         </trim>
+    </insert>
+
+    <update id="updateSManday" parameterType="SManday">
+        update s_manday
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="year != null">year = #{year},</if>
+            <if test="month != null">month = #{month},</if>
+            <if test="manday != null">manday = #{manday},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="createDate != null">create_date = #{createDate},</if>
+            <if test="createUserCode != null">create_user_code = #{createUserCode},</if>
+            <if test="lastModifyDate != null">last_modify_date = #{lastModifyDate},</if>
+            <if test="lastModifyUserCode != null">last_modify_user_code = #{lastModifyUserCode},</if>
+            <if test="midWage != null">mid_wage = #{midWage},</if>
+            <if test="manageRatio != null">manage_ratio = #{manageRatio},</if>
+        </trim>
+        where manday_id = #{mandayId}
+    </update>
+
+    <delete id="deleteSMandayByMandayId" parameterType="String">
+        delete from s_manday where manday_id = #{mandayId}
+    </delete>
+
+    <delete id="deleteSMandayByMandayIds" parameterType="String">
+        delete from s_manday where manday_id in
+        <foreach item="mandayId" collection="array" open="(" separator="," close=")">
+            #{mandayId}
+        </foreach>
+    </delete>
+</mapper>

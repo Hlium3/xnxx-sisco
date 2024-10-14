@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csxnxx.sisco.mapper.SPayBackMapper">
+
+    <resultMap type="SPayBack" id="SPayBackResult">
+        <result property="id"    column="id"    />
+        <result property="projectId"    column="project_id"    />
+        <result property="backCode"    column="back_code"    />
+        <result property="invoiceNum"    column="invoice_num"    />
+        <result property="invoiceTime"    column="invoice_time"    />
+        <result property="backNum"    column="back_num"    />
+        <result property="backType"    column="back_type"    />
+        <result property="backTime"    column="back_time"    />
+        <result property="attribution"    column="attribution"    />
+        <result property="remark"    column="remark"    />
+        <result property="createDate"    column="create_date"    />
+        <result property="createUserCode"    column="create_user_code"    />
+        <result property="lastModifyDate"    column="last_modify_date"    />
+        <result property="lastModifyUserCode"    column="last_modify_user_code"    />
+    </resultMap>
+
+    <sql id="selectSPayBackVo">
+        select id, project_id, back_code, invoice_num, invoice_time, back_num, back_type, back_time, attribution, remark, create_date, create_user_code, last_modify_date, last_modify_user_code from s_pay_back
+    </sql>
+
+    <select id="selectSPayBackList" parameterType="SPayBack" resultMap="SPayBackResult">
+        <include refid="selectSPayBackVo"/>
+        <where>
+            <if test="projectId != null  and projectId != ''"> and project_id = #{projectId}</if>
+            <if test="backCode != null  and backCode != ''"> and back_code = #{backCode}</if>
+            <if test="invoiceNum != null "> and invoice_num = #{invoiceNum}</if>
+            <if test="invoiceTime != null "> and invoice_time = #{invoiceTime}</if>
+            <if test="backNum != null "> and back_num = #{backNum}</if>
+            <if test="backType != null  and backType != ''"> and back_type = #{backType}</if>
+            <if test="backTime != null "> and back_time = #{backTime}</if>
+            <if test="attribution != null  and attribution != ''"> and attribution = #{attribution}</if>
+            <if test="createDate != null "> and create_date = #{createDate}</if>
+            <if test="createUserCode != null  and createUserCode != ''"> and create_user_code = #{createUserCode}</if>
+            <if test="lastModifyDate != null "> and last_modify_date = #{lastModifyDate}</if>
+            <if test="lastModifyUserCode != null  and lastModifyUserCode != ''"> and last_modify_user_code = #{lastModifyUserCode}</if>
+        </where>
+    </select>
+
+    <select id="selectSPayBackById" parameterType="String" resultMap="SPayBackResult">
+        <include refid="selectSPayBackVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertSPayBack" parameterType="SPayBack">
+        insert into s_pay_back
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="projectId != null">project_id,</if>
+            <if test="backCode != null">back_code,</if>
+            <if test="invoiceNum != null">invoice_num,</if>
+            <if test="invoiceTime != null">invoice_time,</if>
+            <if test="backNum != null">back_num,</if>
+            <if test="backType != null">back_type,</if>
+            <if test="backTime != null">back_time,</if>
+            <if test="attribution != null">attribution,</if>
+            <if test="remark != null">remark,</if>
+            <if test="createDate != null">create_date,</if>
+            <if test="createUserCode != null">create_user_code,</if>
+            <if test="lastModifyDate != null">last_modify_date,</if>
+            <if test="lastModifyUserCode != null">last_modify_user_code,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="projectId != null">#{projectId},</if>
+            <if test="backCode != null">#{backCode},</if>
+            <if test="invoiceNum != null">#{invoiceNum},</if>
+            <if test="invoiceTime != null">#{invoiceTime},</if>
+            <if test="backNum != null">#{backNum},</if>
+            <if test="backType != null">#{backType},</if>
+            <if test="backTime != null">#{backTime},</if>
+            <if test="attribution != null">#{attribution},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="createDate != null">#{createDate},</if>
+            <if test="createUserCode != null">#{createUserCode},</if>
+            <if test="lastModifyDate != null">#{lastModifyDate},</if>
+            <if test="lastModifyUserCode != null">#{lastModifyUserCode},</if>
+         </trim>
+    </insert>
+
+    <update id="updateSPayBack" parameterType="SPayBack">
+        update s_pay_back
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="projectId != null">project_id = #{projectId},</if>
+            <if test="backCode != null">back_code = #{backCode},</if>
+            <if test="invoiceNum != null">invoice_num = #{invoiceNum},</if>
+            <if test="invoiceTime != null">invoice_time = #{invoiceTime},</if>
+            <if test="backNum != null">back_num = #{backNum},</if>
+            <if test="backType != null">back_type = #{backType},</if>
+            <if test="backTime != null">back_time = #{backTime},</if>
+            <if test="attribution != null">attribution = #{attribution},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="createDate != null">create_date = #{createDate},</if>
+            <if test="createUserCode != null">create_user_code = #{createUserCode},</if>
+            <if test="lastModifyDate != null">last_modify_date = #{lastModifyDate},</if>
+            <if test="lastModifyUserCode != null">last_modify_user_code = #{lastModifyUserCode},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteSPayBackById" parameterType="String">
+        delete from s_pay_back where id = #{id}
+    </delete>
+
+    <delete id="deleteSPayBackByIds" parameterType="String">
+        delete from s_pay_back where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

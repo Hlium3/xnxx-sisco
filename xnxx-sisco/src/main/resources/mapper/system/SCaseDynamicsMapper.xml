@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csxnxx.sisco.mapper.SCaseDynamicsMapper">
+
+    <resultMap type="SCaseDynamics" id="SCaseDynamicsResult">
+        <result property="cdId"    column="cd_id"    />
+        <result property="cdName"    column="cd_name"    />
+        <result property="cdTime"    column="cd_time"    />
+        <result property="cdContent"    column="cd_content"    />
+        <result property="cdType"    column="cd_type"    />
+        <result property="cdRemake"    column="cd_remake"    />
+        <result property="cdAttachmentPath"    column="cd_attachment_path"    />
+        <result property="cdAttachmentName"    column="cd_attachment_name"    />
+        <result property="cdLabel"    column="cd_label"    />
+        <result property="cdProjectProfile"    column="cd_project_profile"    />
+        <result property="cdOfficialWebsite"    column="cd_official_website"    />
+        <result property="cdVersionInformation"    column="cd_version_information"    />
+        <result property="cdChanneliType"    column="cd_channeli_type"    />
+    </resultMap>
+
+    <sql id="selectSCaseDynamicsVo">
+        select cd_id, cd_name, cd_time, cd_content, cd_type, cd_remake, cd_attachment_path, cd_attachment_name, cd_label, cd_project_profile, cd_official_website, cd_version_information, cd_channeli_type from s_case_dynamics
+    </sql>
+
+    <select id="selectSCaseDynamicsList" parameterType="SCaseDynamics" resultMap="SCaseDynamicsResult">
+        <include refid="selectSCaseDynamicsVo"/>
+        <where>
+            <if test="cdName != null  and cdName != ''"> and cd_name like concat('%', #{cdName}, '%')</if>
+            <if test="cdTime != null "> and cd_time = #{cdTime}</if>
+            <if test="cdContent != null  and cdContent != ''"> and cd_content = #{cdContent}</if>
+            <if test="cdType != null "> and cd_type = #{cdType}</if>
+            <if test="cdRemake != null  and cdRemake != ''"> and cd_remake = #{cdRemake}</if>
+            <if test="cdAttachmentPath != null  and cdAttachmentPath != ''"> and cd_attachment_path = #{cdAttachmentPath}</if>
+            <if test="cdAttachmentName != null  and cdAttachmentName != ''"> and cd_attachment_name like concat('%', #{cdAttachmentName}, '%')</if>
+            <if test="cdLabel != null  and cdLabel != ''"> and cd_label = #{cdLabel}</if>
+            <if test="cdProjectProfile != null  and cdProjectProfile != ''"> and cd_project_profile = #{cdProjectProfile}</if>
+            <if test="cdOfficialWebsite != null  and cdOfficialWebsite != ''"> and cd_official_website = #{cdOfficialWebsite}</if>
+            <if test="cdVersionInformation != null  and cdVersionInformation != ''"> and cd_version_information = #{cdVersionInformation}</if>
+            <if test="cdChanneliType != null "> and cd_channeli_type = #{cdChanneliType}</if>
+        </where>
+    </select>
+
+    <select id="selectSCaseDynamicsByCdId" parameterType="String" resultMap="SCaseDynamicsResult">
+        <include refid="selectSCaseDynamicsVo"/>
+        where cd_id = #{cdId}
+    </select>
+
+    <insert id="insertSCaseDynamics" parameterType="SCaseDynamics">
+        insert into s_case_dynamics
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="cdId != null">cd_id,</if>
+            <if test="cdName != null">cd_name,</if>
+            <if test="cdTime != null">cd_time,</if>
+            <if test="cdContent != null">cd_content,</if>
+            <if test="cdType != null">cd_type,</if>
+            <if test="cdRemake != null">cd_remake,</if>
+            <if test="cdAttachmentPath != null">cd_attachment_path,</if>
+            <if test="cdAttachmentName != null">cd_attachment_name,</if>
+            <if test="cdLabel != null">cd_label,</if>
+            <if test="cdProjectProfile != null">cd_project_profile,</if>
+            <if test="cdOfficialWebsite != null">cd_official_website,</if>
+            <if test="cdVersionInformation != null">cd_version_information,</if>
+            <if test="cdChanneliType != null">cd_channeli_type,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="cdId != null">#{cdId},</if>
+            <if test="cdName != null">#{cdName},</if>
+            <if test="cdTime != null">#{cdTime},</if>
+            <if test="cdContent != null">#{cdContent},</if>
+            <if test="cdType != null">#{cdType},</if>
+            <if test="cdRemake != null">#{cdRemake},</if>
+            <if test="cdAttachmentPath != null">#{cdAttachmentPath},</if>
+            <if test="cdAttachmentName != null">#{cdAttachmentName},</if>
+            <if test="cdLabel != null">#{cdLabel},</if>
+            <if test="cdProjectProfile != null">#{cdProjectProfile},</if>
+            <if test="cdOfficialWebsite != null">#{cdOfficialWebsite},</if>
+            <if test="cdVersionInformation != null">#{cdVersionInformation},</if>
+            <if test="cdChanneliType != null">#{cdChanneliType},</if>
+         </trim>
+    </insert>
+
+    <update id="updateSCaseDynamics" parameterType="SCaseDynamics">
+        update s_case_dynamics
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="cdName != null">cd_name = #{cdName},</if>
+            <if test="cdTime != null">cd_time = #{cdTime},</if>
+            <if test="cdContent != null">cd_content = #{cdContent},</if>
+            <if test="cdType != null">cd_type = #{cdType},</if>
+            <if test="cdRemake != null">cd_remake = #{cdRemake},</if>
+            <if test="cdAttachmentPath != null">cd_attachment_path = #{cdAttachmentPath},</if>
+            <if test="cdAttachmentName != null">cd_attachment_name = #{cdAttachmentName},</if>
+            <if test="cdLabel != null">cd_label = #{cdLabel},</if>
+            <if test="cdProjectProfile != null">cd_project_profile = #{cdProjectProfile},</if>
+            <if test="cdOfficialWebsite != null">cd_official_website = #{cdOfficialWebsite},</if>
+            <if test="cdVersionInformation != null">cd_version_information = #{cdVersionInformation},</if>
+            <if test="cdChanneliType != null">cd_channeli_type = #{cdChanneliType},</if>
+        </trim>
+        where cd_id = #{cdId}
+    </update>
+
+    <delete id="deleteSCaseDynamicsByCdId" parameterType="String">
+        delete from s_case_dynamics where cd_id = #{cdId}
+    </delete>
+
+    <delete id="deleteSCaseDynamicsByCdIds" parameterType="String">
+        delete from s_case_dynamics where cd_id in
+        <foreach item="cdId" collection="array" open="(" separator="," close=")">
+            #{cdId}
+        </foreach>
+    </delete>
+</mapper>

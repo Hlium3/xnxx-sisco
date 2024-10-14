@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csxnxx.sisco.mapper.SProjectMapper">
+
+    <resultMap type="SProject" id="SProjectResult">
+        <result property="projectId"    column="project_id"    />
+        <result property="clientId"    column="client_id"    />
+        <result property="projectName"    column="project_name"    />
+        <result property="isUse"    column="is_use"    />
+        <result property="finishTime"    column="finish_time"    />
+        <result property="startTime"    column="start_time"    />
+        <result property="projectLog"    column="project_log"    />
+        <result property="acceptance"    column="acceptance"    />
+        <result property="warrantyPeriod"    column="warranty_period"    />
+        <result property="attachmentPath"    column="attachment_path"    />
+        <result property="attachmentName"    column="attachment_name"    />
+        <result property="projectStatus"    column="project_status"    />
+        <result property="alreadyPayBack"    column="already_pay_back"    />
+        <result property="notPayBack"    column="not_pay_back"    />
+        <result property="badDebt"    column="bad_debt"    />
+        <result property="planMandays"    column="plan_mandays"    />
+    </resultMap>
+
+    <sql id="selectSProjectVo">
+        select project_id, client_id, project_name, is_use, finish_time, start_time, project_log, acceptance, warranty_period, attachment_path, attachment_name, project_status, already_pay_back, not_pay_back, bad_debt, plan_mandays from s_project
+    </sql>
+
+    <select id="selectSProjectList" parameterType="SProject" resultMap="SProjectResult">
+        <include refid="selectSProjectVo"/>
+        <where>
+            <if test="clientId != null  and clientId != ''"> and client_id = #{clientId}</if>
+            <if test="projectName != null  and projectName != ''"> and project_name like concat('%', #{projectName}, '%')</if>
+            <if test="isUse != null "> and is_use = #{isUse}</if>
+            <if test="finishTime != null "> and finish_time = #{finishTime}</if>
+            <if test="startTime != null "> and start_time = #{startTime}</if>
+            <if test="projectLog != null  and projectLog != ''"> and project_log = #{projectLog}</if>
+            <if test="acceptance != null "> and acceptance = #{acceptance}</if>
+            <if test="warrantyPeriod != null "> and warranty_period = #{warrantyPeriod}</if>
+            <if test="attachmentPath != null  and attachmentPath != ''"> and attachment_path = #{attachmentPath}</if>
+            <if test="attachmentName != null  and attachmentName != ''"> and attachment_name like concat('%', #{attachmentName}, '%')</if>
+            <if test="projectStatus != null  and projectStatus != ''"> and project_status = #{projectStatus}</if>
+            <if test="alreadyPayBack != null "> and already_pay_back = #{alreadyPayBack}</if>
+            <if test="notPayBack != null "> and not_pay_back = #{notPayBack}</if>
+            <if test="badDebt != null "> and bad_debt = #{badDebt}</if>
+            <if test="planMandays != null "> and plan_mandays = #{planMandays}</if>
+        </where>
+    </select>
+
+    <select id="selectSProjectByProjectId" parameterType="String" resultMap="SProjectResult">
+        <include refid="selectSProjectVo"/>
+        where project_id = #{projectId}
+    </select>
+
+    <insert id="insertSProject" parameterType="SProject">
+        insert into s_project
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="projectId != null">project_id,</if>
+            <if test="clientId != null">client_id,</if>
+            <if test="projectName != null">project_name,</if>
+            <if test="isUse != null">is_use,</if>
+            <if test="finishTime != null">finish_time,</if>
+            <if test="startTime != null">start_time,</if>
+            <if test="projectLog != null">project_log,</if>
+            <if test="acceptance != null">acceptance,</if>
+            <if test="warrantyPeriod != null">warranty_period,</if>
+            <if test="attachmentPath != null">attachment_path,</if>
+            <if test="attachmentName != null">attachment_name,</if>
+            <if test="projectStatus != null">project_status,</if>
+            <if test="alreadyPayBack != null">already_pay_back,</if>
+            <if test="notPayBack != null">not_pay_back,</if>
+            <if test="badDebt != null">bad_debt,</if>
+            <if test="planMandays != null">plan_mandays,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="projectId != null">#{projectId},</if>
+            <if test="clientId != null">#{clientId},</if>
+            <if test="projectName != null">#{projectName},</if>
+            <if test="isUse != null">#{isUse},</if>
+            <if test="finishTime != null">#{finishTime},</if>
+            <if test="startTime != null">#{startTime},</if>
+            <if test="projectLog != null">#{projectLog},</if>
+            <if test="acceptance != null">#{acceptance},</if>
+            <if test="warrantyPeriod != null">#{warrantyPeriod},</if>
+            <if test="attachmentPath != null">#{attachmentPath},</if>
+            <if test="attachmentName != null">#{attachmentName},</if>
+            <if test="projectStatus != null">#{projectStatus},</if>
+            <if test="alreadyPayBack != null">#{alreadyPayBack},</if>
+            <if test="notPayBack != null">#{notPayBack},</if>
+            <if test="badDebt != null">#{badDebt},</if>
+            <if test="planMandays != null">#{planMandays},</if>
+         </trim>
+    </insert>
+
+    <update id="updateSProject" parameterType="SProject">
+        update s_project
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="clientId != null">client_id = #{clientId},</if>
+            <if test="projectName != null">project_name = #{projectName},</if>
+            <if test="isUse != null">is_use = #{isUse},</if>
+            <if test="finishTime != null">finish_time = #{finishTime},</if>
+            <if test="startTime != null">start_time = #{startTime},</if>
+            <if test="projectLog != null">project_log = #{projectLog},</if>
+            <if test="acceptance != null">acceptance = #{acceptance},</if>
+            <if test="warrantyPeriod != null">warranty_period = #{warrantyPeriod},</if>
+            <if test="attachmentPath != null">attachment_path = #{attachmentPath},</if>
+            <if test="attachmentName != null">attachment_name = #{attachmentName},</if>
+            <if test="projectStatus != null">project_status = #{projectStatus},</if>
+            <if test="alreadyPayBack != null">already_pay_back = #{alreadyPayBack},</if>
+            <if test="notPayBack != null">not_pay_back = #{notPayBack},</if>
+            <if test="badDebt != null">bad_debt = #{badDebt},</if>
+            <if test="planMandays != null">plan_mandays = #{planMandays},</if>
+        </trim>
+        where project_id = #{projectId}
+    </update>
+
+    <delete id="deleteSProjectByProjectId" parameterType="String">
+        delete from s_project where project_id = #{projectId}
+    </delete>
+
+    <delete id="deleteSProjectByProjectIds" parameterType="String">
+        delete from s_project where project_id in
+        <foreach item="projectId" collection="array" open="(" separator="," close=")">
+            #{projectId}
+        </foreach>
+    </delete>
+</mapper>

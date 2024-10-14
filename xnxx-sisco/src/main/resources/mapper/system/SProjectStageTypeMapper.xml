@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csxnxx.sisco.mapper.SProjectStageTypeMapper">
+
+    <resultMap type="SProjectStageType" id="SProjectStageTypeResult">
+        <result property="stageTypeId"    column="stage_type_id"    />
+        <result property="parentId"    column="parent_id"    />
+        <result property="stageName"    column="stage_name"    />
+        <result property="isUse"    column="is_use"    />
+        <result property="user"    column="user"    />
+        <result property="role"    column="role"    />
+        <result property="orderBy"    column="order_by"    />
+        <result property="createDate"    column="create_date"    />
+        <result property="createUserCode"    column="create_user_code"    />
+        <result property="lastModifyDate"    column="last_modify_date"    />
+        <result property="lastModifyUserCode"    column="last_modify_user_code"    />
+        <result property="versionId"    column="version_id"    />
+    </resultMap>
+
+    <sql id="selectSProjectStageTypeVo">
+        select stage_type_id, parent_id, stage_name, is_use, user, role, order_by, create_date, create_user_code, last_modify_date, last_modify_user_code, version_id from s_project_stage_type
+    </sql>
+
+    <select id="selectSProjectStageTypeList" parameterType="SProjectStageType" resultMap="SProjectStageTypeResult">
+        <include refid="selectSProjectStageTypeVo"/>
+        <where>
+            <if test="parentId != null  and parentId != ''"> and parent_id = #{parentId}</if>
+            <if test="stageName != null  and stageName != ''"> and stage_name like concat('%', #{stageName}, '%')</if>
+            <if test="isUse != null "> and is_use = #{isUse}</if>
+            <if test="user != null  and user != ''"> and user = #{user}</if>
+            <if test="role != null  and role != ''"> and role = #{role}</if>
+            <if test="orderBy != null "> and order_by = #{orderBy}</if>
+            <if test="createDate != null "> and create_date = #{createDate}</if>
+            <if test="createUserCode != null  and createUserCode != ''"> and create_user_code = #{createUserCode}</if>
+            <if test="lastModifyDate != null "> and last_modify_date = #{lastModifyDate}</if>
+            <if test="lastModifyUserCode != null  and lastModifyUserCode != ''"> and last_modify_user_code = #{lastModifyUserCode}</if>
+            <if test="versionId != null "> and version_id = #{versionId}</if>
+        </where>
+    </select>
+
+    <select id="selectSProjectStageTypeByStageTypeId" parameterType="String" resultMap="SProjectStageTypeResult">
+        <include refid="selectSProjectStageTypeVo"/>
+        where stage_type_id = #{stageTypeId}
+    </select>
+
+    <insert id="insertSProjectStageType" parameterType="SProjectStageType">
+        insert into s_project_stage_type
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="stageTypeId != null">stage_type_id,</if>
+            <if test="parentId != null">parent_id,</if>
+            <if test="stageName != null">stage_name,</if>
+            <if test="isUse != null">is_use,</if>
+            <if test="user != null">user,</if>
+            <if test="role != null">role,</if>
+            <if test="orderBy != null">order_by,</if>
+            <if test="createDate != null">create_date,</if>
+            <if test="createUserCode != null">create_user_code,</if>
+            <if test="lastModifyDate != null">last_modify_date,</if>
+            <if test="lastModifyUserCode != null">last_modify_user_code,</if>
+            <if test="versionId != null">version_id,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="stageTypeId != null">#{stageTypeId},</if>
+            <if test="parentId != null">#{parentId},</if>
+            <if test="stageName != null">#{stageName},</if>
+            <if test="isUse != null">#{isUse},</if>
+            <if test="user != null">#{user},</if>
+            <if test="role != null">#{role},</if>
+            <if test="orderBy != null">#{orderBy},</if>
+            <if test="createDate != null">#{createDate},</if>
+            <if test="createUserCode != null">#{createUserCode},</if>
+            <if test="lastModifyDate != null">#{lastModifyDate},</if>
+            <if test="lastModifyUserCode != null">#{lastModifyUserCode},</if>
+            <if test="versionId != null">#{versionId},</if>
+         </trim>
+    </insert>
+
+    <update id="updateSProjectStageType" parameterType="SProjectStageType">
+        update s_project_stage_type
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="parentId != null">parent_id = #{parentId},</if>
+            <if test="stageName != null">stage_name = #{stageName},</if>
+            <if test="isUse != null">is_use = #{isUse},</if>
+            <if test="user != null">user = #{user},</if>
+            <if test="role != null">role = #{role},</if>
+            <if test="orderBy != null">order_by = #{orderBy},</if>
+            <if test="createDate != null">create_date = #{createDate},</if>
+            <if test="createUserCode != null">create_user_code = #{createUserCode},</if>
+            <if test="lastModifyDate != null">last_modify_date = #{lastModifyDate},</if>
+            <if test="lastModifyUserCode != null">last_modify_user_code = #{lastModifyUserCode},</if>
+            <if test="versionId != null">version_id = #{versionId},</if>
+        </trim>
+        where stage_type_id = #{stageTypeId}
+    </update>
+
+    <delete id="deleteSProjectStageTypeByStageTypeId" parameterType="String">
+        delete from s_project_stage_type where stage_type_id = #{stageTypeId}
+    </delete>
+
+    <delete id="deleteSProjectStageTypeByStageTypeIds" parameterType="String">
+        delete from s_project_stage_type where stage_type_id in
+        <foreach item="stageTypeId" collection="array" open="(" separator="," close=")">
+            #{stageTypeId}
+        </foreach>
+    </delete>
+</mapper>

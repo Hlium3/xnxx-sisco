@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csxnxx.sisco.mapper.SProjectMaintenanceMapper">
+
+    <resultMap type="SProjectMaintenance" id="SProjectMaintenanceResult">
+        <result property="id"    column="id"    />
+        <result property="projectId"    column="project_id"    />
+        <result property="inspectionTime"    column="inspection_time"    />
+        <result property="maintenanceDetails"    column="maintenance_details"    />
+        <result property="createDate"    column="create_date"    />
+        <result property="createUserCode"    column="create_user_code"    />
+        <result property="lastModifyDate"    column="last_modify_date"    />
+        <result property="lastModifyUserCode"    column="last_modify_user_code"    />
+    </resultMap>
+
+    <sql id="selectSProjectMaintenanceVo">
+        select id, project_id, inspection_time, maintenance_details, create_date, create_user_code, last_modify_date, last_modify_user_code from s_project_maintenance
+    </sql>
+
+    <select id="selectSProjectMaintenanceList" parameterType="SProjectMaintenance" resultMap="SProjectMaintenanceResult">
+        <include refid="selectSProjectMaintenanceVo"/>
+        <where>
+            <if test="projectId != null  and projectId != ''"> and project_id = #{projectId}</if>
+            <if test="inspectionTime != null "> and inspection_time = #{inspectionTime}</if>
+            <if test="maintenanceDetails != null  and maintenanceDetails != ''"> and maintenance_details = #{maintenanceDetails}</if>
+            <if test="createDate != null "> and create_date = #{createDate}</if>
+            <if test="createUserCode != null  and createUserCode != ''"> and create_user_code = #{createUserCode}</if>
+            <if test="lastModifyDate != null "> and last_modify_date = #{lastModifyDate}</if>
+            <if test="lastModifyUserCode != null  and lastModifyUserCode != ''"> and last_modify_user_code = #{lastModifyUserCode}</if>
+        </where>
+    </select>
+
+    <select id="selectSProjectMaintenanceById" parameterType="String" resultMap="SProjectMaintenanceResult">
+        <include refid="selectSProjectMaintenanceVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertSProjectMaintenance" parameterType="SProjectMaintenance">
+        insert into s_project_maintenance
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="projectId != null">project_id,</if>
+            <if test="inspectionTime != null">inspection_time,</if>
+            <if test="maintenanceDetails != null">maintenance_details,</if>
+            <if test="createDate != null">create_date,</if>
+            <if test="createUserCode != null">create_user_code,</if>
+            <if test="lastModifyDate != null">last_modify_date,</if>
+            <if test="lastModifyUserCode != null">last_modify_user_code,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="projectId != null">#{projectId},</if>
+            <if test="inspectionTime != null">#{inspectionTime},</if>
+            <if test="maintenanceDetails != null">#{maintenanceDetails},</if>
+            <if test="createDate != null">#{createDate},</if>
+            <if test="createUserCode != null">#{createUserCode},</if>
+            <if test="lastModifyDate != null">#{lastModifyDate},</if>
+            <if test="lastModifyUserCode != null">#{lastModifyUserCode},</if>
+         </trim>
+    </insert>
+
+    <update id="updateSProjectMaintenance" parameterType="SProjectMaintenance">
+        update s_project_maintenance
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="projectId != null">project_id = #{projectId},</if>
+            <if test="inspectionTime != null">inspection_time = #{inspectionTime},</if>
+            <if test="maintenanceDetails != null">maintenance_details = #{maintenanceDetails},</if>
+            <if test="createDate != null">create_date = #{createDate},</if>
+            <if test="createUserCode != null">create_user_code = #{createUserCode},</if>
+            <if test="lastModifyDate != null">last_modify_date = #{lastModifyDate},</if>
+            <if test="lastModifyUserCode != null">last_modify_user_code = #{lastModifyUserCode},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteSProjectMaintenanceById" parameterType="String">
+        delete from s_project_maintenance where id = #{id}
+    </delete>
+
+    <delete id="deleteSProjectMaintenanceByIds" parameterType="String">
+        delete from s_project_maintenance where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

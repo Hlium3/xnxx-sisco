@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csxnxx.sisco.mapper.SProjectFinanceMapper">
+
+    <resultMap type="SProjectFinance" id="SProjectFinanceResult">
+        <result property="id"    column="id"    />
+        <result property="projectId"    column="project_id"    />
+        <result property="userName"    column="user_name"    />
+        <result property="amount"    column="amount"    />
+        <result property="occurTime"    column="occur_time"    />
+        <result property="remark"    column="remark"    />
+        <result property="createDate"    column="create_date"    />
+        <result property="createUserCode"    column="create_user_code"    />
+        <result property="lastModifyDate"    column="last_modify_date"    />
+        <result property="lastModifyUserCode"    column="last_modify_user_code"    />
+        <result property="costType"    column="cost_type"    />
+        <result property="staffId"    column="staff_id"    />
+        <result property="orgCode"    column="org_code"    />
+    </resultMap>
+
+    <sql id="selectSProjectFinanceVo">
+        select id, project_id, user_name, amount, occur_time, remark, create_date, create_user_code, last_modify_date, last_modify_user_code, cost_type, staff_id, org_code from s_project_finance
+    </sql>
+
+    <select id="selectSProjectFinanceList" parameterType="SProjectFinance" resultMap="SProjectFinanceResult">
+        <include refid="selectSProjectFinanceVo"/>
+        <where>
+            <if test="projectId != null  and projectId != ''"> and project_id = #{projectId}</if>
+            <if test="userName != null  and userName != ''"> and user_name like concat('%', #{userName}, '%')</if>
+            <if test="amount != null "> and amount = #{amount}</if>
+            <if test="occurTime != null "> and occur_time = #{occurTime}</if>
+            <if test="createDate != null "> and create_date = #{createDate}</if>
+            <if test="createUserCode != null  and createUserCode != ''"> and create_user_code = #{createUserCode}</if>
+            <if test="lastModifyDate != null "> and last_modify_date = #{lastModifyDate}</if>
+            <if test="lastModifyUserCode != null  and lastModifyUserCode != ''"> and last_modify_user_code = #{lastModifyUserCode}</if>
+            <if test="costType != null  and costType != ''"> and cost_type = #{costType}</if>
+            <if test="staffId != null  and staffId != ''"> and staff_id = #{staffId}</if>
+            <if test="orgCode != null  and orgCode != ''"> and org_code = #{orgCode}</if>
+        </where>
+    </select>
+
+    <select id="selectSProjectFinanceById" parameterType="String" resultMap="SProjectFinanceResult">
+        <include refid="selectSProjectFinanceVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertSProjectFinance" parameterType="SProjectFinance">
+        insert into s_project_finance
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="projectId != null">project_id,</if>
+            <if test="userName != null">user_name,</if>
+            <if test="amount != null">amount,</if>
+            <if test="occurTime != null">occur_time,</if>
+            <if test="remark != null">remark,</if>
+            <if test="createDate != null">create_date,</if>
+            <if test="createUserCode != null">create_user_code,</if>
+            <if test="lastModifyDate != null">last_modify_date,</if>
+            <if test="lastModifyUserCode != null">last_modify_user_code,</if>
+            <if test="costType != null">cost_type,</if>
+            <if test="staffId != null">staff_id,</if>
+            <if test="orgCode != null">org_code,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="projectId != null">#{projectId},</if>
+            <if test="userName != null">#{userName},</if>
+            <if test="amount != null">#{amount},</if>
+            <if test="occurTime != null">#{occurTime},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="createDate != null">#{createDate},</if>
+            <if test="createUserCode != null">#{createUserCode},</if>
+            <if test="lastModifyDate != null">#{lastModifyDate},</if>
+            <if test="lastModifyUserCode != null">#{lastModifyUserCode},</if>
+            <if test="costType != null">#{costType},</if>
+            <if test="staffId != null">#{staffId},</if>
+            <if test="orgCode != null">#{orgCode},</if>
+         </trim>
+    </insert>
+
+    <update id="updateSProjectFinance" parameterType="SProjectFinance">
+        update s_project_finance
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="projectId != null">project_id = #{projectId},</if>
+            <if test="userName != null">user_name = #{userName},</if>
+            <if test="amount != null">amount = #{amount},</if>
+            <if test="occurTime != null">occur_time = #{occurTime},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="createDate != null">create_date = #{createDate},</if>
+            <if test="createUserCode != null">create_user_code = #{createUserCode},</if>
+            <if test="lastModifyDate != null">last_modify_date = #{lastModifyDate},</if>
+            <if test="lastModifyUserCode != null">last_modify_user_code = #{lastModifyUserCode},</if>
+            <if test="costType != null">cost_type = #{costType},</if>
+            <if test="staffId != null">staff_id = #{staffId},</if>
+            <if test="orgCode != null">org_code = #{orgCode},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteSProjectFinanceById" parameterType="String">
+        delete from s_project_finance where id = #{id}
+    </delete>
+
+    <delete id="deleteSProjectFinanceByIds" parameterType="String">
+        delete from s_project_finance where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

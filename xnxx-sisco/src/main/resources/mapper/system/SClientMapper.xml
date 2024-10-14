@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csxnxx.sisco.mapper.SClientMapper">
+
+    <resultMap type="SClient" id="SClientResult">
+        <result property="clientId"    column="client_id"    />
+        <result property="companyName"    column="company_name"    />
+        <result property="companyCode"    column="company_code"    />
+        <result property="tel"    column="tel"    />
+        <result property="linkman"    column="linkman"    />
+        <result property="businessPrincipal"    column="business_principal"    />
+        <result property="technicalPrincipal"    column="technical_principal"    />
+        <result property="signingDate"    column="signing_date"    />
+        <result property="isUse"    column="is_use"    />
+        <result property="createDate"    column="create_date"    />
+        <result property="createUserCode"    column="create_user_code"    />
+        <result property="lastModifyDate"    column="last_modify_date"    />
+        <result property="lastModifyUserCode"    column="last_modify_user_code"    />
+        <result property="versionId"    column="version_id"    />
+    </resultMap>
+
+    <sql id="selectSClientVo">
+        select client_id, company_name, company_code, tel, linkman, business_principal, technical_principal, signing_date, is_use, create_date, create_user_code, last_modify_date, last_modify_user_code, version_id from s_client
+    </sql>
+
+    <select id="selectSClientList" parameterType="SClient" resultMap="SClientResult">
+        <include refid="selectSClientVo"/>
+        <where>
+            <if test="companyName != null  and companyName != ''"> and company_name like concat('%', #{companyName}, '%')</if>
+            <if test="companyCode != null  and companyCode != ''"> and company_code = #{companyCode}</if>
+            <if test="tel != null  and tel != ''"> and tel = #{tel}</if>
+            <if test="linkman != null  and linkman != ''"> and linkman = #{linkman}</if>
+            <if test="businessPrincipal != null  and businessPrincipal != ''"> and business_principal = #{businessPrincipal}</if>
+            <if test="technicalPrincipal != null  and technicalPrincipal != ''"> and technical_principal = #{technicalPrincipal}</if>
+            <if test="signingDate != null "> and signing_date = #{signingDate}</if>
+            <if test="isUse != null "> and is_use = #{isUse}</if>
+            <if test="createDate != null "> and create_date = #{createDate}</if>
+            <if test="createUserCode != null  and createUserCode != ''"> and create_user_code = #{createUserCode}</if>
+            <if test="lastModifyDate != null "> and last_modify_date = #{lastModifyDate}</if>
+            <if test="lastModifyUserCode != null  and lastModifyUserCode != ''"> and last_modify_user_code = #{lastModifyUserCode}</if>
+            <if test="versionId != null "> and version_id = #{versionId}</if>
+        </where>
+    </select>
+
+    <select id="selectSClientByClientId" parameterType="String" resultMap="SClientResult">
+        <include refid="selectSClientVo"/>
+        where client_id = #{clientId}
+    </select>
+
+    <insert id="insertSClient" parameterType="SClient">
+        insert into s_client
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="clientId != null">client_id,</if>
+            <if test="companyName != null">company_name,</if>
+            <if test="companyCode != null">company_code,</if>
+            <if test="tel != null">tel,</if>
+            <if test="linkman != null">linkman,</if>
+            <if test="businessPrincipal != null">business_principal,</if>
+            <if test="technicalPrincipal != null">technical_principal,</if>
+            <if test="signingDate != null">signing_date,</if>
+            <if test="isUse != null">is_use,</if>
+            <if test="createDate != null">create_date,</if>
+            <if test="createUserCode != null">create_user_code,</if>
+            <if test="lastModifyDate != null">last_modify_date,</if>
+            <if test="lastModifyUserCode != null">last_modify_user_code,</if>
+            <if test="versionId != null">version_id,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="clientId != null">#{clientId},</if>
+            <if test="companyName != null">#{companyName},</if>
+            <if test="companyCode != null">#{companyCode},</if>
+            <if test="tel != null">#{tel},</if>
+            <if test="linkman != null">#{linkman},</if>
+            <if test="businessPrincipal != null">#{businessPrincipal},</if>
+            <if test="technicalPrincipal != null">#{technicalPrincipal},</if>
+            <if test="signingDate != null">#{signingDate},</if>
+            <if test="isUse != null">#{isUse},</if>
+            <if test="createDate != null">#{createDate},</if>
+            <if test="createUserCode != null">#{createUserCode},</if>
+            <if test="lastModifyDate != null">#{lastModifyDate},</if>
+            <if test="lastModifyUserCode != null">#{lastModifyUserCode},</if>
+            <if test="versionId != null">#{versionId},</if>
+         </trim>
+    </insert>
+
+    <update id="updateSClient" parameterType="SClient">
+        update s_client
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="companyName != null">company_name = #{companyName},</if>
+            <if test="companyCode != null">company_code = #{companyCode},</if>
+            <if test="tel != null">tel = #{tel},</if>
+            <if test="linkman != null">linkman = #{linkman},</if>
+            <if test="businessPrincipal != null">business_principal = #{businessPrincipal},</if>
+            <if test="technicalPrincipal != null">technical_principal = #{technicalPrincipal},</if>
+            <if test="signingDate != null">signing_date = #{signingDate},</if>
+            <if test="isUse != null">is_use = #{isUse},</if>
+            <if test="createDate != null">create_date = #{createDate},</if>
+            <if test="createUserCode != null">create_user_code = #{createUserCode},</if>
+            <if test="lastModifyDate != null">last_modify_date = #{lastModifyDate},</if>
+            <if test="lastModifyUserCode != null">last_modify_user_code = #{lastModifyUserCode},</if>
+            <if test="versionId != null">version_id = #{versionId},</if>
+        </trim>
+        where client_id = #{clientId}
+    </update>
+
+    <delete id="deleteSClientByClientId" parameterType="String">
+        delete from s_client where client_id = #{clientId}
+    </delete>
+
+    <delete id="deleteSClientByClientIds" parameterType="String">
+        delete from s_client where client_id in
+        <foreach item="clientId" collection="array" open="(" separator="," close=")">
+            #{clientId}
+        </foreach>
+    </delete>
+</mapper>

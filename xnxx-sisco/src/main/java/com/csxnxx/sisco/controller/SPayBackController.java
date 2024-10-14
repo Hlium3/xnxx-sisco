@@ -28,7 +28,7 @@ import com.csxnxx.common.core.page.TableDataInfo;
  * @date 2024-10-12
  */
 @RestController
-@RequestMapping("/system/back")
+@RequestMapping("/sisco/back")
 public class SPayBackController extends BaseController
 {
     @Autowired
@@ -37,7 +37,7 @@ public class SPayBackController extends BaseController
     /**
      * 查询【请填写功能名称】列表
      */
-    @PreAuthorize("@ss.hasPermi('system:back:list')")
+    @PreAuthorize("@ss.hasPermi('sisco:back:list')")
     @GetMapping("/list")
     public TableDataInfo list(SPayBack sPayBack)
     {
@@ -49,7 +49,7 @@ public class SPayBackController extends BaseController
     /**
      * 导出【请填写功能名称】列表
      */
-    @PreAuthorize("@ss.hasPermi('system:back:export')")
+    @PreAuthorize("@ss.hasPermi('sisco:back:export')")
     @Log(title = "【请填写功能名称】", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(HttpServletResponse response, SPayBack sPayBack)
@@ -62,7 +62,7 @@ public class SPayBackController extends BaseController
     /**
      * 获取【请填写功能名称】详细信息
      */
-    @PreAuthorize("@ss.hasPermi('system:back:query')")
+    @PreAuthorize("@ss.hasPermi('sisco:back:query')")
     @GetMapping(value = "/{id}")
     public AjaxResult getInfo(@PathVariable("id") String id)
     {
@@ -72,7 +72,7 @@ public class SPayBackController extends BaseController
     /**
      * 新增【请填写功能名称】
      */
-    @PreAuthorize("@ss.hasPermi('system:back:add')")
+    @PreAuthorize("@ss.hasPermi('sisco:back:add')")
     @Log(title = "【请填写功能名称】", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody SPayBack sPayBack)
@@ -83,7 +83,7 @@ public class SPayBackController extends BaseController
     /**
      * 修改【请填写功能名称】
      */
-    @PreAuthorize("@ss.hasPermi('system:back:edit')")
+    @PreAuthorize("@ss.hasPermi('sisco:back:edit')")
     @Log(title = "【请填写功能名称】", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody SPayBack sPayBack)
@@ -94,7 +94,7 @@ public class SPayBackController extends BaseController
     /**
      * 删除【请填写功能名称】
      */
-    @PreAuthorize("@ss.hasPermi('system:back:remove')")
+    @PreAuthorize("@ss.hasPermi('sisco:back:remove')")
     @Log(title = "【请填写功能名称】", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{ids}")
     public AjaxResult remove(@PathVariable String[] ids)

@@ -28,7 +28,7 @@ import com.csxnxx.common.core.page.TableDataInfo;
  * @date 2024-10-12
  */
 @RestController
-@RequestMapping("/system/client")
+@RequestMapping("/sisco/client")
 public class SClientController extends BaseController
 {
     @Autowired
@@ -37,7 +37,7 @@ public class SClientController extends BaseController
     /**
      * 查询客户管理列表
      */
-    @PreAuthorize("@ss.hasPermi('system:client:list')")
+    @PreAuthorize("@ss.hasPermi('sisco:client:list')")
     @GetMapping("/list")
     public TableDataInfo list(SClient sClient)
     {
@@ -49,7 +49,7 @@ public class SClientController extends BaseController
     /**
      * 导出客户管理列表
      */
-    @PreAuthorize("@ss.hasPermi('system:client:export')")
+    @PreAuthorize("@ss.hasPermi('sisco:client:export')")
     @Log(title = "客户管理", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(HttpServletResponse response, SClient sClient)
@@ -62,7 +62,7 @@ public class SClientController extends BaseController
     /**
      * 获取客户管理详细信息
      */
-    @PreAuthorize("@ss.hasPermi('system:client:query')")
+    @PreAuthorize("@ss.hasPermi('sisco:client:query')")
     @GetMapping(value = "/{clientId}")
     public AjaxResult getInfo(@PathVariable("clientId") String clientId)
     {
@@ -72,7 +72,7 @@ public class SClientController extends BaseController
     /**
      * 新增客户管理
      */
-    @PreAuthorize("@ss.hasPermi('system:client:add')")
+    @PreAuthorize("@ss.hasPermi('sisco:client:add')")
     @Log(title = "客户管理", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody SClient sClient)
@@ -83,7 +83,7 @@ public class SClientController extends BaseController
     /**
      * 修改客户管理
      */
-    @PreAuthorize("@ss.hasPermi('system:client:edit')")
+    @PreAuthorize("@ss.hasPermi('sisco:client:edit')")
     @Log(title = "客户管理", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody SClient sClient)
@@ -94,7 +94,7 @@ public class SClientController extends BaseController
     /**
      * 删除客户管理
      */
-    @PreAuthorize("@ss.hasPermi('system:client:remove')")
+    @PreAuthorize("@ss.hasPermi('sisco:client:remove')")
     @Log(title = "客户管理", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{clientIds}")
     public AjaxResult remove(@PathVariable String[] clientIds)

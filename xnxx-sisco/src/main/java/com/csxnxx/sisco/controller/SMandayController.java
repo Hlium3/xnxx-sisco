@@ -28,7 +28,7 @@ import com.csxnxx.common.core.page.TableDataInfo;
  * @date 2024-10-12
  */
 @RestController
-@RequestMapping("/system/manday")
+@RequestMapping("/sisco/manday")
 public class SMandayController extends BaseController
 {
     @Autowired
@@ -37,7 +37,7 @@ public class SMandayController extends BaseController
     /**
      * 查询月标准工时列表
      */
-    @PreAuthorize("@ss.hasPermi('system:manday:list')")
+    @PreAuthorize("@ss.hasPermi('sisco:manday:list')")
     @GetMapping("/list")
     public TableDataInfo list(SManday sManday)
     {
@@ -49,7 +49,7 @@ public class SMandayController extends BaseController
     /**
      * 导出月标准工时列表
      */
-    @PreAuthorize("@ss.hasPermi('system:manday:export')")
+    @PreAuthorize("@ss.hasPermi('sisco:manday:export')")
     @Log(title = "月标准工时", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(HttpServletResponse response, SManday sManday)
@@ -62,7 +62,7 @@ public class SMandayController extends BaseController
     /**
      * 获取月标准工时详细信息
      */
-    @PreAuthorize("@ss.hasPermi('system:manday:query')")
+    @PreAuthorize("@ss.hasPermi('sisco:manday:query')")
     @GetMapping(value = "/{mandayId}")
     public AjaxResult getInfo(@PathVariable("mandayId") String mandayId)
     {
@@ -72,7 +72,7 @@ public class SMandayController extends BaseController
     /**
      * 新增月标准工时
      */
-    @PreAuthorize("@ss.hasPermi('system:manday:add')")
+    @PreAuthorize("@ss.hasPermi('sisco:manday:add')")
     @Log(title = "月标准工时", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody SManday sManday)
@@ -83,7 +83,7 @@ public class SMandayController extends BaseController
     /**
      * 修改月标准工时
      */
-    @PreAuthorize("@ss.hasPermi('system:manday:edit')")
+    @PreAuthorize("@ss.hasPermi('sisco:manday:edit')")
     @Log(title = "月标准工时", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody SManday sManday)
@@ -94,7 +94,7 @@ public class SMandayController extends BaseController
     /**
      * 删除月标准工时
      */
-    @PreAuthorize("@ss.hasPermi('system:manday:remove')")
+    @PreAuthorize("@ss.hasPermi('sisco:manday:remove')")
     @Log(title = "月标准工时", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{mandayIds}")
     public AjaxResult remove(@PathVariable String[] mandayIds)

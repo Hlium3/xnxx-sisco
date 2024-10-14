@@ -28,7 +28,7 @@ import com.csxnxx.common.core.page.TableDataInfo;
  * @date 2024-10-12
  */
 @RestController
-@RequestMapping("/system/finance")
+@RequestMapping("/sisco/finance")
 public class SProjectFinanceController extends BaseController
 {
     @Autowired
@@ -37,7 +37,7 @@ public class SProjectFinanceController extends BaseController
     /**
      * 查询【请填写功能名称】列表
      */
-    @PreAuthorize("@ss.hasPermi('system:finance:list')")
+    @PreAuthorize("@ss.hasPermi('sisco:finance:list')")
     @GetMapping("/list")
     public TableDataInfo list(SProjectFinance sProjectFinance)
     {
@@ -49,7 +49,7 @@ public class SProjectFinanceController extends BaseController
     /**
      * 导出【请填写功能名称】列表
      */
-    @PreAuthorize("@ss.hasPermi('system:finance:export')")
+    @PreAuthorize("@ss.hasPermi('sisco:finance:export')")
     @Log(title = "【请填写功能名称】", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(HttpServletResponse response, SProjectFinance sProjectFinance)
@@ -62,7 +62,7 @@ public class SProjectFinanceController extends BaseController
     /**
      * 获取【请填写功能名称】详细信息
      */
-    @PreAuthorize("@ss.hasPermi('system:finance:query')")
+    @PreAuthorize("@ss.hasPermi('sisco:finance:query')")
     @GetMapping(value = "/{id}")
     public AjaxResult getInfo(@PathVariable("id") String id)
     {
@@ -72,7 +72,7 @@ public class SProjectFinanceController extends BaseController
     /**
      * 新增【请填写功能名称】
      */
-    @PreAuthorize("@ss.hasPermi('system:finance:add')")
+    @PreAuthorize("@ss.hasPermi('sisco:finance:add')")
     @Log(title = "【请填写功能名称】", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody SProjectFinance sProjectFinance)
@@ -83,7 +83,7 @@ public class SProjectFinanceController extends BaseController
     /**
      * 修改【请填写功能名称】
      */
-    @PreAuthorize("@ss.hasPermi('system:finance:edit')")
+    @PreAuthorize("@ss.hasPermi('sisco:finance:edit')")
     @Log(title = "【请填写功能名称】", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody SProjectFinance sProjectFinance)
@@ -94,7 +94,7 @@ public class SProjectFinanceController extends BaseController
     /**
      * 删除【请填写功能名称】
      */
-    @PreAuthorize("@ss.hasPermi('system:finance:remove')")
+    @PreAuthorize("@ss.hasPermi('sisco:finance:remove')")
     @Log(title = "【请填写功能名称】", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{ids}")
     public AjaxResult remove(@PathVariable String[] ids)

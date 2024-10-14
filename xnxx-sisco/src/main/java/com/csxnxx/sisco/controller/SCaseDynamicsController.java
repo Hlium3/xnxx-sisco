@@ -28,7 +28,7 @@ import com.csxnxx.common.core.page.TableDataInfo;
  * @date 2024-10-12
  */
 @RestController
-@RequestMapping("/system/dynamics")
+@RequestMapping("/sisco/dynamics")
 public class SCaseDynamicsController extends BaseController
 {
     @Autowired
@@ -37,7 +37,7 @@ public class SCaseDynamicsController extends BaseController
     /**
      * 查询成功案例和资讯动态列表
      */
-    @PreAuthorize("@ss.hasPermi('system:dynamics:list')")
+    @PreAuthorize("@ss.hasPermi('sisco:dynamics:list')")
     @GetMapping("/list")
     public TableDataInfo list(SCaseDynamics sCaseDynamics)
     {
@@ -49,7 +49,7 @@ public class SCaseDynamicsController extends BaseController
     /**
      * 导出成功案例和资讯动态列表
      */
-    @PreAuthorize("@ss.hasPermi('system:dynamics:export')")
+    @PreAuthorize("@ss.hasPermi('sisco:dynamics:export')")
     @Log(title = "成功案例和资讯动态", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(HttpServletResponse response, SCaseDynamics sCaseDynamics)
@@ -62,7 +62,7 @@ public class SCaseDynamicsController extends BaseController
     /**
      * 获取成功案例和资讯动态详细信息
      */
-    @PreAuthorize("@ss.hasPermi('system:dynamics:query')")
+    @PreAuthorize("@ss.hasPermi('sisco:dynamics:query')")
     @GetMapping(value = "/{cdId}")
     public AjaxResult getInfo(@PathVariable("cdId") String cdId)
     {
@@ -72,7 +72,7 @@ public class SCaseDynamicsController extends BaseController
     /**
      * 新增成功案例和资讯动态
      */
-    @PreAuthorize("@ss.hasPermi('system:dynamics:add')")
+    @PreAuthorize("@ss.hasPermi('sisco:dynamics:add')")
     @Log(title = "成功案例和资讯动态", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody SCaseDynamics sCaseDynamics)
@@ -83,7 +83,7 @@ public class SCaseDynamicsController extends BaseController
     /**
      * 修改成功案例和资讯动态
      */
-    @PreAuthorize("@ss.hasPermi('system:dynamics:edit')")
+    @PreAuthorize("@ss.hasPermi('sisco:dynamics:edit')")
     @Log(title = "成功案例和资讯动态", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody SCaseDynamics sCaseDynamics)
@@ -94,7 +94,7 @@ public class SCaseDynamicsController extends BaseController
     /**
      * 删除成功案例和资讯动态
      */
-    @PreAuthorize("@ss.hasPermi('system:dynamics:remove')")
+    @PreAuthorize("@ss.hasPermi('sisco:dynamics:remove')")
     @Log(title = "成功案例和资讯动态", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{cdIds}")
     public AjaxResult remove(@PathVariable String[] cdIds)

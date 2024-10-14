@@ -28,7 +28,7 @@ import com.csxnxx.common.core.page.TableDataInfo;
  * @date 2024-10-12
  */
 @RestController
-@RequestMapping("/system/copy")
+@RequestMapping("/sisco/copy")
 public class SProjectStageCopyController extends BaseController
 {
     @Autowired
@@ -37,7 +37,7 @@ public class SProjectStageCopyController extends BaseController
     /**
      * 查询项目阶段管理列表
      */
-    @PreAuthorize("@ss.hasPermi('system:copy:list')")
+    @PreAuthorize("@ss.hasPermi('sisco:copy:list')")
     @GetMapping("/list")
     public TableDataInfo list(SProjectStageCopy sProjectStageCopy)
     {
@@ -49,7 +49,7 @@ public class SProjectStageCopyController extends BaseController
     /**
      * 导出项目阶段管理列表
      */
-    @PreAuthorize("@ss.hasPermi('system:copy:export')")
+    @PreAuthorize("@ss.hasPermi('sisco:copy:export')")
     @Log(title = "项目阶段管理", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(HttpServletResponse response, SProjectStageCopy sProjectStageCopy)
@@ -62,7 +62,7 @@ public class SProjectStageCopyController extends BaseController
     /**
      * 获取项目阶段管理详细信息
      */
-    @PreAuthorize("@ss.hasPermi('system:copy:query')")
+    @PreAuthorize("@ss.hasPermi('sisco:copy:query')")
     @GetMapping(value = "/{stageId}")
     public AjaxResult getInfo(@PathVariable("stageId") String stageId)
     {
@@ -72,7 +72,7 @@ public class SProjectStageCopyController extends BaseController
     /**
      * 新增项目阶段管理
      */
-    @PreAuthorize("@ss.hasPermi('system:copy:add')")
+    @PreAuthorize("@ss.hasPermi('sisco:copy:add')")
     @Log(title = "项目阶段管理", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody SProjectStageCopy sProjectStageCopy)
@@ -83,7 +83,7 @@ public class SProjectStageCopyController extends BaseController
     /**
      * 修改项目阶段管理
      */
-    @PreAuthorize("@ss.hasPermi('system:copy:edit')")
+    @PreAuthorize("@ss.hasPermi('sisco:copy:edit')")
     @Log(title = "项目阶段管理", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody SProjectStageCopy sProjectStageCopy)
@@ -94,7 +94,7 @@ public class SProjectStageCopyController extends BaseController
     /**
      * 删除项目阶段管理
      */
-    @PreAuthorize("@ss.hasPermi('system:copy:remove')")
+    @PreAuthorize("@ss.hasPermi('sisco:copy:remove')")
     @Log(title = "项目阶段管理", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{stageIds}")
     public AjaxResult remove(@PathVariable String[] stageIds)

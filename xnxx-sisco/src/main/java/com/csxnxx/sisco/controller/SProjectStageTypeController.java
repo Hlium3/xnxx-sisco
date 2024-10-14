@@ -28,7 +28,7 @@ import com.csxnxx.common.core.page.TableDataInfo;
  * @date 2024-10-12
  */
 @RestController
-@RequestMapping("/system/type")
+@RequestMapping("/sisco/type")
 public class SProjectStageTypeController extends BaseController
 {
     @Autowired
@@ -37,7 +37,7 @@ public class SProjectStageTypeController extends BaseController
     /**
      * 查询项目阶段类型列表
      */
-    @PreAuthorize("@ss.hasPermi('system:type:list')")
+    @PreAuthorize("@ss.hasPermi('sisco:type:list')")
     @GetMapping("/list")
     public TableDataInfo list(SProjectStageType sProjectStageType)
     {
@@ -49,7 +49,7 @@ public class SProjectStageTypeController extends BaseController
     /**
      * 导出项目阶段类型列表
      */
-    @PreAuthorize("@ss.hasPermi('system:type:export')")
+    @PreAuthorize("@ss.hasPermi('sisco:type:export')")
     @Log(title = "项目阶段类型", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(HttpServletResponse response, SProjectStageType sProjectStageType)
@@ -62,7 +62,7 @@ public class SProjectStageTypeController extends BaseController
     /**
      * 获取项目阶段类型详细信息
      */
-    @PreAuthorize("@ss.hasPermi('system:type:query')")
+    @PreAuthorize("@ss.hasPermi('sisco:type:query')")
     @GetMapping(value = "/{stageTypeId}")
     public AjaxResult getInfo(@PathVariable("stageTypeId") String stageTypeId)
     {
@@ -72,7 +72,7 @@ public class SProjectStageTypeController extends BaseController
     /**
      * 新增项目阶段类型
      */
-    @PreAuthorize("@ss.hasPermi('system:type:add')")
+    @PreAuthorize("@ss.hasPermi('sisco:type:add')")
     @Log(title = "项目阶段类型", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody SProjectStageType sProjectStageType)
@@ -83,7 +83,7 @@ public class SProjectStageTypeController extends BaseController
     /**
      * 修改项目阶段类型
      */
-    @PreAuthorize("@ss.hasPermi('system:type:edit')")
+    @PreAuthorize("@ss.hasPermi('sisco:type:edit')")
     @Log(title = "项目阶段类型", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody SProjectStageType sProjectStageType)
@@ -94,7 +94,7 @@ public class SProjectStageTypeController extends BaseController
     /**
      * 删除项目阶段类型
      */
-    @PreAuthorize("@ss.hasPermi('system:type:remove')")
+    @PreAuthorize("@ss.hasPermi('sisco:type:remove')")
     @Log(title = "项目阶段类型", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{stageTypeIds}")
     public AjaxResult remove(@PathVariable String[] stageTypeIds)

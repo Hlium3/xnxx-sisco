@@ -28,7 +28,7 @@ import com.csxnxx.common.core.page.TableDataInfo;
  * @date 2024-10-12
  */
 @RestController
-@RequestMapping("/system/project")
+@RequestMapping("/sisco/project")
 public class SProjectController extends BaseController
 {
     @Autowired
@@ -37,7 +37,7 @@ public class SProjectController extends BaseController
     /**
      * 查询项目管理列表
      */
-    @PreAuthorize("@ss.hasPermi('system:project:list')")
+    @PreAuthorize("@ss.hasPermi('sisco:project:list')")
     @GetMapping("/list")
     public TableDataInfo list(SProject sProject)
     {
@@ -49,7 +49,7 @@ public class SProjectController extends BaseController
     /**
      * 导出项目管理列表
      */
-    @PreAuthorize("@ss.hasPermi('system:project:export')")
+    @PreAuthorize("@ss.hasPermi('sisco:project:export')")
     @Log(title = "项目管理", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(HttpServletResponse response, SProject sProject)
@@ -62,7 +62,7 @@ public class SProjectController extends BaseController
     /**
      * 获取项目管理详细信息
      */
-    @PreAuthorize("@ss.hasPermi('system:project:query')")
+    @PreAuthorize("@ss.hasPermi('sisco:project:query')")
     @GetMapping(value = "/{projectId}")
     public AjaxResult getInfo(@PathVariable("projectId") String projectId)
     {
@@ -72,7 +72,7 @@ public class SProjectController extends BaseController
     /**
      * 新增项目管理
      */
-    @PreAuthorize("@ss.hasPermi('system:project:add')")
+    @PreAuthorize("@ss.hasPermi('sisco:project:add')")
     @Log(title = "项目管理", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody SProject sProject)
@@ -83,7 +83,7 @@ public class SProjectController extends BaseController
     /**
      * 修改项目管理
      */
-    @PreAuthorize("@ss.hasPermi('system:project:edit')")
+    @PreAuthorize("@ss.hasPermi('sisco:project:edit')")
     @Log(title = "项目管理", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody SProject sProject)
@@ -94,7 +94,7 @@ public class SProjectController extends BaseController
     /**
      * 删除项目管理
      */
-    @PreAuthorize("@ss.hasPermi('system:project:remove')")
+    @PreAuthorize("@ss.hasPermi('sisco:project:remove')")
     @Log(title = "项目管理", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{projectIds}")
     public AjaxResult remove(@PathVariable String[] projectIds)

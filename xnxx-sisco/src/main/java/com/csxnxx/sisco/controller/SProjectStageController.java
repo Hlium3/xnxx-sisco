@@ -28,7 +28,7 @@ import com.csxnxx.common.core.page.TableDataInfo;
  * @date 2024-10-12
  */
 @RestController
-@RequestMapping("/system/stage")
+@RequestMapping("/sisco/stage")
 public class SProjectStageController extends BaseController
 {
     @Autowired
@@ -37,7 +37,7 @@ public class SProjectStageController extends BaseController
     /**
      * 查询项目阶段管理列表
      */
-    @PreAuthorize("@ss.hasPermi('system:stage:list')")
+    @PreAuthorize("@ss.hasPermi('sisco:stage:list')")
     @GetMapping("/list")
     public TableDataInfo list(SProjectStage sProjectStage)
     {
@@ -49,7 +49,7 @@ public class SProjectStageController extends BaseController
     /**
      * 导出项目阶段管理列表
      */
-    @PreAuthorize("@ss.hasPermi('system:stage:export')")
+    @PreAuthorize("@ss.hasPermi('sisco:stage:export')")
     @Log(title = "项目阶段管理", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(HttpServletResponse response, SProjectStage sProjectStage)
@@ -62,7 +62,7 @@ public class SProjectStageController extends BaseController
     /**
      * 获取项目阶段管理详细信息
      */
-    @PreAuthorize("@ss.hasPermi('system:stage:query')")
+    @PreAuthorize("@ss.hasPermi('sisco:stage:query')")
     @GetMapping(value = "/{stageId}")
     public AjaxResult getInfo(@PathVariable("stageId") String stageId)
     {
@@ -72,7 +72,7 @@ public class SProjectStageController extends BaseController
     /**
      * 新增项目阶段管理
      */
-    @PreAuthorize("@ss.hasPermi('system:stage:add')")
+    @PreAuthorize("@ss.hasPermi('sisco:stage:add')")
     @Log(title = "项目阶段管理", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody SProjectStage sProjectStage)
@@ -83,7 +83,7 @@ public class SProjectStageController extends BaseController
     /**
      * 修改项目阶段管理
      */
-    @PreAuthorize("@ss.hasPermi('system:stage:edit')")
+    @PreAuthorize("@ss.hasPermi('sisco:stage:edit')")
     @Log(title = "项目阶段管理", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody SProjectStage sProjectStage)
@@ -94,7 +94,7 @@ public class SProjectStageController extends BaseController
     /**
      * 删除项目阶段管理
      */
-    @PreAuthorize("@ss.hasPermi('system:stage:remove')")
+    @PreAuthorize("@ss.hasPermi('sisco:stage:remove')")
     @Log(title = "项目阶段管理", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{stageIds}")
     public AjaxResult remove(@PathVariable String[] stageIds)
